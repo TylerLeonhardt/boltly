@@ -1,8 +1,26 @@
-# Project Lightning
+# It's coming...
 
-Coming soon...
+a mockup...
+![](mockup/socket.io tester light theme.png)
 
-# Getting Started
+Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications.
+
+## MVP Features
+* Beautifully styled with Material Design guidelines
+* Multiple connections
+* Send events with complex bodies thanks to Ace Editor.
+* History of sent messages
+* Track any event
+* Watch messages come in via terminal-like environment
+* Multi-platform support thanks to Electron
+
+### Dark theme
+Oh yeah... also a slick dark theme.
+
+a mockup...
+![](mockup/socket.io tester dark theme.png)
+
+## Getting Started
 
 1. clone this repository
 2. `cd project-lightning/`
