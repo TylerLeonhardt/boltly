@@ -20,6 +20,9 @@ Oh yeah... also a slick dark theme.
 a mockup...
 ![](mockup/socket.io tester dark theme.png)
 
+## Roadmap and progress
+The progress of this project will be kept on Trello [here](https://github.com/angular-ui/ui-ace).
+
 ## Getting Started
 
 1. clone this repository
