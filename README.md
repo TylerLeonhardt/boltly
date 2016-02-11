@@ -21,7 +21,7 @@ a mockup...
 ![](mockup/socket.io tester dark theme.png)
 
 ## Roadmap and progress
-The progress of this project will be kept on Trello [here](https://github.com/angular-ui/ui-ace).
+The progress of this project will be kept on Trello [here](https://trello.com/b/ixMGRAL1/project-lightning).
 
 ## Getting Started
 
