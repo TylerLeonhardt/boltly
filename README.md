@@ -3,7 +3,7 @@
 a mockup...
 ![](mockup/socket.io tester light theme.png)
 
-Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications.
+Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
 
 ## MVP Features
 * Beautifully styled with Material Design guidelines
