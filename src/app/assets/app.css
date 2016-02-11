@@ -8,6 +8,14 @@
   width: 36px;
 }
 
+.more {
+  background-color: transparent;
+  border: none;
+  height: 25px;
+  margin: 19px 19px 0px 19px;
+  width: 25px;
+}
+
 
 md-toolbar h3 {
   margin: auto;
@@ -108,4 +116,8 @@ span.name {
   font-weight: bold;
   font-size:1.1em;
   padding-left:5px;
+}
+
+#console {
+  box-shadow:-9px 0px 6px -6px rgba(0,0,0,0.19);
 }
