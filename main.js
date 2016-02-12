@@ -1,3 +1,5 @@
+/* global process */
+/* global __dirname */
 'use strict';
 
 const electron = require('electron');
