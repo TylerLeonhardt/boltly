@@ -4,12 +4,15 @@
   "description": "coming soon...",
   "main": "main.js",
   "scripts": {
+    "prestart":"babel src --out-dir build --copy-files --ignore 'node_modules/' && cp -r ./src/node_modules ./build/node_modules",
     "start": "electron main.js"
   },
   "keywords": [
     "Electron"
   ],
   "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
     "electron-prebuilt": "^0.36.0"
   }
 }
