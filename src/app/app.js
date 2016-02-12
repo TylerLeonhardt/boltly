@@ -1,3 +1,4 @@
+/* global angular */
 angular
   .module('starterApp', ['ngMaterial', 'users'])
   .config(function($mdThemingProvider, $mdIconProvider){
@@ -27,6 +28,8 @@ angular
           .defaultIconSet("./assets/svg/avatars.svg", 128)
           .icon("menu"       , "./assets/svg/menu.svg"        , 24)
           .icon("more_vert_white"  , "./assets/svg/more_vert_white.svg"   , 24)
+          .icon("palette_white"  , "./assets/svg/palette_white.svg"   , 24)
+          .icon("flash_on_white"  , "./assets/svg/flash_on_white.svg"   , 24)
           .icon("share"      , "./assets/svg/share.svg"       , 24)
           .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
           .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)

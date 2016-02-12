@@ -55,9 +55,29 @@
       <div flex>
         dis will be tabs
       </div>
-      <md-button id="more" class="more" aria-label="More Options">
-        <md-icon md-svg-icon="more_vert_white" ></md-icon>
-      </md-button>
+      <md-menu md-position-mode="target-right target" >
+          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+            <md-icon md-menu-origin md-svg-icon="more_vert_white"></md-icon>
+          </md-button>
+          <md-menu-content width="4" >
+            <md-menu-item>
+                <md-button>
+                    <div layout="row">
+                        <p flex>Add New Connection</p>
+                        <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
+                    </div>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button>
+                    <div layout="row">
+                        <p flex>Change Theme</p>
+                        <md-icon md-menu-align-target md-svg-icon="palette_white" style="margin: auto 3px auto 0;"></md-icon>
+                    </div>
+                </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
     </md-toolbar>
 
     <md-content flex id="content" layout="row" layout-xs="column">
