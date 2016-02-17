@@ -126,6 +126,10 @@ span.name {
   box-shadow:-9px 0px 6px -6px rgba(0,0,0,0.19);
 }
 
+.ace_content{
+  background-color: rgb(28, 49, 68);
+}
+
 @media (max-width: 600px) {
   #console {
     box-shadow:0px 0px 0px 0px rgba(0,0,0,0.19);

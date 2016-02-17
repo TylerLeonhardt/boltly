@@ -2,7 +2,8 @@
 angular.module('starterApp', [
     'ngMaterial',
     'users',
-    'pouchdb'
+    'pouchdb',
+    'ui.ace'
 ]).config(($mdThemingProvider, $mdIconProvider) => {
     $mdThemingProvider.definePalette('darkRich', {
         '50': 'a4acb4',
