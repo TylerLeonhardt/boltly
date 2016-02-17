@@ -4,8 +4,9 @@
   "description": "coming soon...",
   "main": "main.js",
   "scripts": {
-    "prestart":"babel src --out-dir build --copy-files --ignore 'node_modules/' && cp -r ./src/node_modules ./build/node_modules",
-    "start": "electron main.js"
+    "preinstall":"bash scripts/preinstall.sh",
+    "preupdate": "bash scripts/preupdate.sh",
+    "start": "bash scripts/start.sh"
   },
   "keywords": [
     "Electron"

@@ -17,7 +17,6 @@
     "live-server": "^0.9.1"
   },
   "scripts": {
-    "prestart": "npm update",
     "tests": "karma start ./test/karma.conf.js"
   }
 }
