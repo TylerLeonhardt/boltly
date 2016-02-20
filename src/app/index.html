@@ -23,9 +23,9 @@
 
   </head>
 
-  <body ng-app="starterApp" layout="row" ng-controller="UserController as ul" ng-cloak >
+  <body ng-app="app" layout="column" ng-controller="ConnectionsController" ng-cloak >
 
-  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+  <!-- <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
       md-component-id="left"
       ng-click="ul.toggleList()" aria-label="Show User List"
       md-is-locked-open="$mdMedia('gt-sm')">
@@ -43,25 +43,49 @@
       </md-list-item>
     </md-list>
 
-  </md-sidenav>
+  </md-sidenav> -->
 
+  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+      md-component-id="left"
+      ng-click="toggleHistory()" aria-label="Show History"
+      md-is-locked-open="$mdMedia('gt-sm')">
+
+      <md-toolbar class="md-whiteframe-z1">
+        <h3>History</h3>
+      </md-toolbar>
+
+      <md-list>
+        <md-list-item ng-repeat="it in connections">
+            <!-- <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"> -->
+            <!-- <md-button> -->
+              <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
+              <!-- {{it.name}} -->
+            <!-- </md-button> -->
+        </md-list-item>
+      </md-list>
+
+  </md-sidenav>
 
   <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
 
     <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button id="main" class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+      <md-button id="main" class="menu" hide-gt-sm ng-click="toggleHistory()" aria-label="Show History">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
       <div flex>
-        dis will be tabs
+      <md-tabs md-selected="tabs.selectedIndex" md-border-bottom md-autoselect>
+        <md-tab ng-repeat="connection in connections"
+                id="tab{{$index}}"
+                aria-controls="tab{{$index}}-content">{{connection.url}}</md-tab>
+      </md-tabs>
       </div>
       <md-menu md-position-mode="target-right target" >
-          <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
             <md-icon md-menu-origin md-svg-icon="more_vert_white"></md-icon>
           </md-button>
           <md-menu-content width="4" >
             <md-menu-item>
-                <md-button>
+                <md-button ng-click="showListBottomSheet()">
                     <div layout="row">
                         <p flex>Add New Connection</p>
                         <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
@@ -79,32 +103,25 @@
           </md-menu-content>
         </md-menu>
     </md-toolbar>
-
-    <md-content flex id="content" layout="row" layout-xs="column">
-        <!-- <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ul.selected.name}}</h2>
-        <p>{{ul.selected.content}}</p> -->
-
-        <!-- <md-button class="contact" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ ul.selected.name }}">
-          <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
-          <md-icon md-svg-icon="share"></md-icon>
-        </md-button> -->
-
-        <!-- <div layout="row" layout-xs="column" > -->
-          <div flex>
-            This will be where we track and send events
-          </div>
-          <div id="console" ui-ace="{useWrapMode : true,
-            theme:'monokai',
-            advanced: {
-            highlightActiveLine: false,
-            highlightGutterLine: false},
-            showGutter:false
-          }" readonly flex>
-            This will be the console.
-          </div>
-        <!-- </div> -->
-      </md-content>
+    <md-content flex id="content" layout-padding>
+      <ng-switch on="tabs.selectedIndex" class="tabpanel-container">
+        <div ng-repeat="connection in connections">
+          <div role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" ng-switch-when="{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()">
+            <div flex>
+              This will be where we track and send events
+            </div>
+            <div id="console" ui-ace="{useWrapMode : true,
+              theme:'monokai',
+              advanced: {
+              highlightActiveLine: false,
+              highlightGutterLine: false},
+              showGutter:false
+            }" readonly flex>
+              This will be the console.
+            </div>
+          </div></div>
+      </ng-switch>
+    </md-content>
 
   </div>
 
@@ -113,14 +130,21 @@
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
+    <script src="../node_modules/pouchdb/dist/pouchdb.min.js"></script>
     <script src="../bower_components/angular-pouchdb/angular-pouchdb.min.js"></script>
     <script type="text/javascript" src="../bower_components/angular-ui-ace/ui-ace.js"></script>
+    <!-- <script src=".js/services/PouchDBService.js"></script> -->
 
     <script src="./src/users/Users.js"></script>
     <script src="./src/users/UserController.js"></script>
     <script src="./src/users/UserService.js"></script>
 
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script src="./js/services/pouchDBService.js"></script>
+
+    <script src="./js/controllers/ConnectionsController.js"></script>
+    <script src="./js/controllers/AddConnectionBottomSheetController.js"></script>
 
   </body>
 </html>

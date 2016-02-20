@@ -1,5 +1,5 @@
 /* global angular */
-angular.module('starterApp', [
+angular.module('app', [
     'ngMaterial',
     'users',
     'pouchdb',
