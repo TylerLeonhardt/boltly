@@ -4,7 +4,8 @@
   background-color: transparent;
   border: none;
   height: 38px;
-  margin: 16px;
+  margin-top: 5px;
+  margin-bottom: 0px;
   width: 36px;
 }
 
@@ -40,7 +41,7 @@ md-icon.avatar {
 
 
 button#main {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 md-sidenav > md-toolbar {

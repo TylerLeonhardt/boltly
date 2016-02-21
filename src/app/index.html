@@ -72,12 +72,13 @@
       <md-button id="main" class="menu" hide-gt-sm ng-click="toggleHistory()" aria-label="Show History">
         <md-icon md-svg-icon="menu" ></md-icon>
       </md-button>
-      <div flex>
-      <md-tabs md-selected="tabs.selectedIndex" md-border-bottom md-autoselect>
-        <md-tab ng-repeat="connection in connections"
-                id="tab{{$index}}"
-                aria-controls="tab{{$index}}-content">{{connection.url}}</md-tab>
-      </md-tabs>
+      <div layout="column" flex>
+        <md-tabs md-selected="tabs.selectedIndex" md-autoselect layout="column" flex>
+          <md-tab ng-repeat="connection in connections"
+                  id="tab{{$index}}"
+                  flex
+                  aria-controls="tab{{$index}}-content">{{connection.url}}</md-tab>
+        </md-tabs>
       </div>
       <md-menu md-position-mode="target-right target" >
           <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
