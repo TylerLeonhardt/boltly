@@ -23,7 +23,7 @@
 
   </head>
 
-  <body ng-app="app" layout="column" ng-controller="ConnectionsController" ng-cloak >
+  <body ng-app="app" layout="row" ng-controller="ConnectionsController" ng-cloak >
 
   <!-- <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
       md-component-id="left"
@@ -103,26 +103,21 @@
           </md-menu-content>
         </md-menu>
     </md-toolbar>
-    <md-content flex id="content" layout-padding>
-      <div class="tabpanel-container">
-        <div ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex">
-          index: {{$index}}
-          <div role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()">
-            <div flex>
-              This will be where we track and send events
-            </div>
-            <div id="console" ui-ace="{useWrapMode : true,
-              theme:'monokai',
-              advanced: {
-              highlightActiveLine: false,
-              highlightGutterLine: false},
-              showGutter:false
-            }" readonly flex>
-              This will be the console.
-            </div>
+    <md-content flex id="content" layout="column">
+        <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column">
+          <div flex>
+            This will be where we track and send events index: {{$index}}
           </div>
-        </div>
-      </div>
+          <div id="console" ui-ace="{useWrapMode : true,
+            theme:'monokai',
+            advanced: {
+            highlightActiveLine: false,
+            highlightGutterLine: false},
+            showGutter:false
+          }" readonly flex>
+            This will be the console.
+          </div>
+        </ng-view flex>
     </md-content>
 
   </div>
