@@ -22,6 +22,34 @@ md-toolbar h3 {
     font-weight: 500;
 }
 
+md-bottom-sheet {
+    background: transparent;
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        background: rgba(232, 232, 232, 0.81);
+        position: absolute;
+        top: -20px;
+        bottom: -20px;
+        right: -20px;
+        left: -20px;
+        -webkit-filter: blur(8px) contrast(0.4) brightness(1.4);
+    }
+}
+
+md-input-container label {
+    text-shadow: none;
+}
+
+md-toolbar {
+    min-height: 0;
+    max-height: 48px;
+    height: 48px;
+}
+.md-tab.md-active span {
+    color: white;
+}
 
 /* Sidenav area */
 
