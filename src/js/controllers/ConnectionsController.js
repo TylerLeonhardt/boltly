@@ -34,7 +34,7 @@
 
         $scope.showListBottomSheet = () => {
             $mdBottomSheet.show({
-                    templateUrl: '../views/add-connection-bottom-sheet.html',
+                    templateUrl: 'views/add-connection-bottom-sheet.html',
                     controller: 'BottomSheetCtrl'
                 })
                 // .then(db.post)
