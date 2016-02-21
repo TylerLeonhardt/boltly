@@ -34,7 +34,7 @@
 
         $scope.showListBottomSheet = () => {
             $mdBottomSheet.show({
-                    templateUrl: '../views/add-connection-bottom-sheet.html',
+                    templateUrl: 'views/add-connection-bottom-sheet.html',
                     controller: 'BottomSheetCtrl'
                 })
                 // .then(db.post)
@@ -50,7 +50,7 @@
         // .then(result => $scope.connections = result.rows)
         // .catch(error);
 
-        $scope.connections = [{ url: "test" }];
+        $scope.connections = [{ url: "test", outgoing: [] }];
 
         $scope.tabs = {
             selectedIndex: 0,

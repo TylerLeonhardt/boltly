@@ -40,6 +40,7 @@ angular.module('app', [
         .icon('palette_white', './assets/svg/palette_white.svg', 24)
         .icon('flash_on_white', './assets/svg/flash_on_white.svg', 24)
         .icon('share', './assets/svg/share.svg', 24)
+        .icon('history', './assets/svg/history_white.svg', 24)
         .icon('google_plus', './assets/svg/google_plus.svg', 512)
         .icon('hangouts', './assets/svg/hangouts.svg', 512)
         .icon('twitter', './assets/svg/twitter.svg', 512)
