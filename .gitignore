@@ -36,5 +36,9 @@ node_modules
 # OS X System file
 .DS_Store
 
+# sass
+.sass-cache
+
 # Transpiled code
 build
+dist

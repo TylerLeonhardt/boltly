@@ -4,8 +4,6 @@
   "description": "coming soon...",
   "main": "main.js",
   "scripts": {
-    "preinstall": "bash scripts/preinstall.sh",
-    "preupdate": "bash scripts/preupdate.sh",
     "start": "electron main.js"
   },
   "keywords": [
