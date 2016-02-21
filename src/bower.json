@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-pouchdb": "~4.1.0"
+    "angular-pouchdb": "~4.1.0",
+    "angular-ui-ace": "bower"
   }
 }
