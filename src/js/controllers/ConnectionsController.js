@@ -50,7 +50,7 @@
         // .then(result => $scope.connections = result.rows)
         // .catch(error);
 
-        $scope.connections = [{ url: "test", outgoing: [] }];
+        $scope.connections = [];
 
         $scope.tabs = {
             selectedIndex: 0,

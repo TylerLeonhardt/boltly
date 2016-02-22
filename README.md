@@ -30,4 +30,5 @@ The progress of this project will be kept on Trello [here](https://trello.com/b/
 1. clone this repository
 2. `cd project-lightning/`
 3. `npm install`
+4. `gulp`
 7. `npm start`

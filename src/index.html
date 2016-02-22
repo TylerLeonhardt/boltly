@@ -51,12 +51,13 @@
             <h3>History</h3>
         </md-toolbar>
         <md-list>
-            <md-list-item ng-repeat="it in connections">
+            <md-list-item ng-repeat="it in connections[tabs.selectedIndex].outgoingHistory">
                 <!-- <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"> -->
                 <!-- <md-button> -->
                 <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
                 <!-- {{it.name}} -->
                 <!-- </md-button> -->
+                {{it.test}}
             </md-list-item>
         </md-list>
     </md-sidenav>
@@ -97,7 +98,7 @@
         <md-content flex id="content" layout="column">
             <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column">
                 <div flex>
-                    This will be where we track and send events index: {{$index}}
+                    This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}
                 </div>
                 <div id="console" ui-ace="{useWrapMode : true,
             theme:'monokai',
