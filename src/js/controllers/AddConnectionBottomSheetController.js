@@ -10,7 +10,7 @@
       let connectionObj = {
         url:$scope.newConnection,
         incomingHistory:[],
-        outgoingHistory:[{test:"wow"},{test:"wow2"}],
+        outgoingHistory:[],
         trackedEvents:[]
       };
       $mdBottomSheet.hide(connectionObj);

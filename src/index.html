@@ -46,7 +46,7 @@
     </md-list>
 
   </md-sidenav> -->
-    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-click="toggleHistory()" aria-label="Show History" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-sidenav ng-show="connections.length" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-click="toggleHistory()" aria-label="Show History" md-is-locked-open="$mdMedia('gt-sm')">
         <md-toolbar class="md-whiteframe-z1">
             <h3>History</h3>
         </md-toolbar>
@@ -59,9 +59,12 @@
                 <!-- </md-button> -->
                 {{it.test}}
             </md-list-item>
+            <md-list-item ng-show="!connections[tabs.selectedIndex].outgoingHistory.length">
+              No History
+            </md-list-item>
         </md-list>
     </md-sidenav>
-    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+    <div ng-show="connections.length" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
         <md-toolbar layout="row" class="md-whiteframe-z1">
             <md-button id="main" class="menu" hide-gt-sm ng-click="toggleHistory()" aria-label="Show History">
                 <md-icon md-svg-icon="history"></md-icon>
@@ -110,7 +113,24 @@
                     This will be the console.
                 </div>
             </ng-view flex>
+            <!-- <div flex ng-show="!connections.length">
+              <md-button ng-click="showListBottomSheet()">
+                  <div layout="row">
+                      <p flex>Add New Connection</p>
+                      <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
+                  </div>
+              </md-button>
+            </div> -->
         </md-content>
+    </div>
+
+    <div flex ng-show="!connections.length">
+      <md-button ng-click="showListBottomSheet()">
+          <div layout="row">
+              <p flex>Add New Connection</p>
+              <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
+          </div>
+      </md-button>
     </div>
     <script src="../node_modules/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
