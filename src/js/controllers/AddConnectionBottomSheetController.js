@@ -9,7 +9,7 @@
     $scope.createNewConnection = () => {
       let connectionObj = {
         url:$scope.newConnection,
-        incomingHistory:[],
+        incomingHistory:["test","wow"],
         outgoingHistory:[],
         trackedEvents:[]
       };
