@@ -7,6 +7,18 @@ a mockup...
 
 Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
 
+## Why?
+
+I sent out a survey a bunch of people asking different questions about how they use Socket.io. The biggest question I asked, was:
+
+##### What do you currently do in order to test to make sure your Socket.io logic in your application is correct?
+
+Astoundingly, these were the results:
+
+![](http://i.imgur.com/wrg9y0r.png)
+
+Debugging Socket.io server logic is a mess. This is what codename, "Project Lightning", hopes to fix. It will save time by allowing developers to test their logic with a click of a button.
+
 ## MVP Features
 * Beautifully styled with Material Design guidelines
 * Multiple connections
