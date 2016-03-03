@@ -2,6 +2,7 @@
 angular.module('app', [
     'ngMaterial',
     'pouchdb',
+    'btford.socket-io',
     'ui.ace'
 ]).config(($mdThemingProvider, $mdIconProvider) => {
     $mdThemingProvider.definePalette('darkRich', {

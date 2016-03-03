@@ -4,11 +4,11 @@
     let mod = angular.module('app');
 
     mod.controller('ConnectionsController', [
-        '$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB',
+        '$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB', 'socket',
         ConnectionsController
     ]);
 
-    function ConnectionsController($scope, $mdSidenav, $mdBottomSheet, $log, pouchDB) {
+    function ConnectionsController($scope, $mdSidenav, $mdBottomSheet, $log, pouchDB, socket) {
         let db = pouchDB("local");
         /*
         LATER ADD SYNC CODE
@@ -27,7 +27,11 @@
         }
 
         $scope.connections = [];
+        $scope.sockets = [];
+        $scope.hovered =[];
 
+        $scope.hoverIn = (i) => $scope.hovered[i] = true;
+        $scope.hoverOut = (i) => $scope.hovered[i] = false;
         let error = (err) => $log.error(err);
 
         $scope.toggleHistory = () => $mdSidenav('left').toggle();
@@ -40,9 +44,7 @@
         // }
 
         let addToConnections = res => {
-            // $scope.connections.push(res);
             db.post(res);
-            console.log($scope.connections)
         }
 
         $scope.showListBottomSheet = () => {
@@ -56,22 +58,30 @@
                 .catch(error);
         };
 
-        let getAllDocs = () => db.allDocs({ include_docs: true });
-
-
-        // getAllDocs()
-        // .then(result => $scope.connections = result.rows)
-        // .catch(error);
-
         let onChange = (change) => {
           console.log(change);
-          console.log(change.change.deleted);
           if(!change.change.deleted){
+            let tempSocket = new socket(change.change.doc.url);
+            tempSocket.connected = false;
+
+            tempSocket.on('connect',function() {
+              console.log('Client has connected to: ' + change.change.doc.url);
+              tempSocket.connected = true;
+            });
+            tempSocket.on('disconnect',function() {
+              console.log('The client has disconnected from: ' + change.change.doc.url);
+              tempSocket.connected = false;
+            });
+            $scope.sockets.push(tempSocket);
+            $scope.hovered.push(false);
             $scope.connections.push(change.change.doc);
           }else {
             let index = $scope.connections.findIndex((connection, index, array) => change.change.id === connection._id);
             if(index != -1){
               $scope.connections.splice(index, 1);
+              $scope.sockets[index].disconnect();
+              $scope.sockets.splice(index, 1);
+              $scope.hovered.splice(index, 1);
             }
           }
         }

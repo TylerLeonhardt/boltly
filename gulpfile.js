@@ -17,6 +17,9 @@ var path = {
 	},{
 		src: ['src/index.html'],
 		dst: 'dist/'
+	}, {
+		src: [ 'src/js/libs/*.js'],
+		dst: 'dist/js/libs/'
 	}],
 	js: [{
 		src: [ 'src/js/app.js'],
@@ -98,7 +101,7 @@ gulp.task('watch', function(){
 	var t = ['js', 'misc', 'sass'];
 	for(var i in t) {
 		gulp.run(t[i]);
-	}	
+	}
 
 	gulp.watch(source('misc'), ['misc']);
 	gulp.watch(source('js'), ['js']);

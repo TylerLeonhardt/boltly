@@ -72,12 +72,18 @@
             <div layout="column" flex id="tabs-div">
                 <md-tabs md-selected="tabs.selectedIndex" md-autoselect layout="column" flex>
                     <md-tab ng-repeat="connection in connections" id="tab{{$index}}" flex aria-controls="tab{{$index}}-content" class="connection-tabs">
-                      <div layout="row">
+                      <div layout="row" ng-mouseover="hoverIn($index)" ng-mouseleave="hoverOut($index)">
                         <div flex>
                           {{connection.url}}
                         </div>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)">
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)" ng-show="hovered[$index]">
                           <md-icon class="close" md-svg-icon="assets/svg/ic_close_white_24px.svg"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!hovered[$index] && sockets[$index].connected">
+                          <md-icon class="close" md-svg-icon="assets/svg/flash_on_white.svg"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!hovered[$index] && !sockets[$index].connected">
+                          <md-icon class="close" md-svg-icon="assets/svg/ic_flash_off_white_24px.svg"></md-icon>
                         </md-button>
                       </div>
                     </md-tab>
@@ -149,6 +155,8 @@
     <script src="../node_modules/pouchdb/dist/pouchdb.min.js"></script>
     <script src="../node_modules/angular-pouchdb/dist/angular-pouchdb.min.js"></script>
     <script src="../node_modules/angular-ui-ace/src/ui-ace.js"></script>
+    <script src="js/libs/socket.io.min.js"></script>
+    <script src="../node_modules/angular-socket-io/socket.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
