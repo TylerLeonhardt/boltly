@@ -5,6 +5,9 @@
          .controller('BottomSheetCtrl', ($scope, $mdBottomSheet) => {
 
     $scope.newConnection = "";
+    $scope.validURL = false;
+
+    $scope.checkURL = () => $scope.validURL = linkify.find($scope.newConnection).length;
 
     $scope.createNewConnection = () => {
       let connectionObj = {

@@ -76,13 +76,13 @@
                         <div flex>
                           {{connection.url}}
                         </div>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)" ng-show="hovered[$index]">
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)" ng-show="tabs.hovered[$index]">
                           <md-icon class="close" md-svg-icon="assets/svg/ic_close_white_24px.svg"></md-icon>
                         </md-button>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!hovered[$index] && sockets[$index].connected">
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!tabs.hovered[$index] && sockets[$index].connected">
                           <md-icon class="close" md-svg-icon="assets/svg/flash_on_white.svg"></md-icon>
                         </md-button>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!hovered[$index] && !sockets[$index].connected">
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!tabs.hovered[$index] && !sockets[$index].connected">
                           <md-icon class="close" md-svg-icon="assets/svg/ic_flash_off_white_24px.svg"></md-icon>
                         </md-button>
                       </div>
@@ -157,6 +157,7 @@
     <script src="../node_modules/angular-ui-ace/src/ui-ace.js"></script>
     <script src="js/libs/socket.io.min.js"></script>
     <script src="../node_modules/angular-socket-io/socket.min.js"></script>
+    <script src="js/libs/linkify.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
