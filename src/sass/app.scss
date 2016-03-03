@@ -47,7 +47,7 @@ md-toolbar {
     max-height: 48px;
     height: 48px;
 }
-.md-tab.md-active span {
+.md-tab.md-active div {
     color: white;
 }
 
@@ -153,6 +153,19 @@ span.name {
 
 .ace_content {
     background-color: rgb(28, 49, 68);
+}
+
+.close {
+  padding-bottom: 24px;
+  height: 34px;
+}
+
+.connection-tabs {
+  padding-right: 0;
+}
+
+.md-tab {
+  padding-right: 0;
 }
 
 @media (max-width: 600px) {

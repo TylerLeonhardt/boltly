@@ -51,13 +51,13 @@
             <h3>History</h3>
         </md-toolbar>
         <md-list>
-            <md-list-item ng-repeat="it in connections[tabs.selectedIndex].outgoingHistory">
+            <md-list-item ng-repeat="outgoingHistoryObject in connections[tabs.selectedIndex].outgoingHistory">
                 <!-- <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"> -->
                 <!-- <md-button> -->
                 <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
                 <!-- {{it.name}} -->
                 <!-- </md-button> -->
-                {{it.test}}
+                {{outgoingHistoryObject}}
             </md-list-item>
             <md-list-item ng-show="!connections[tabs.selectedIndex].outgoingHistory.length">
               No History
@@ -69,9 +69,18 @@
             <md-button id="main" class="menu" hide-gt-sm ng-click="toggleHistory()" aria-label="Show History">
                 <md-icon md-svg-icon="history"></md-icon>
             </md-button>
-            <div layout="column" flex>
+            <div layout="column" flex id="tabs-div">
                 <md-tabs md-selected="tabs.selectedIndex" md-autoselect layout="column" flex>
-                    <md-tab ng-repeat="connection in connections" id="tab{{$index}}" flex aria-controls="tab{{$index}}-content">{{connection.url}}</md-tab>
+                    <md-tab ng-repeat="connection in connections" id="tab{{$index}}" flex aria-controls="tab{{$index}}-content" class="connection-tabs">
+                      <div layout="row">
+                        <div flex>
+                          {{connection.url}}
+                        </div>
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)">
+                          <md-icon class="close" md-svg-icon="assets/svg/ic_close_white_24px.svg"></md-icon>
+                        </md-button>
+                      </div>
+                    </md-tab>
                 </md-tabs>
             </div>
             <md-menu md-position-mode="target-right target">

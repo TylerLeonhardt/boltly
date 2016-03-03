@@ -1,19 +1,19 @@
 (function(){
   'use strict';
 
-  class PouchDBService {
+  class SocketIOService {
     constructor(){
         this.db = new PouchDB('local');
     }
 
     load() {
       //TODO: Need to load from PouchDB
-      return Promise.resolve(/*POUCHDB LOAD CALL GOES HERE*/);
+      return Promise.resolve(db.allDocs({ include_docs: true }));
     }
 
 
   }
 
-  angular.module('app').service('PouchDBService', PouchDBService);
+  angular.module('app').service('SocketIOService', SocketIOService);
 
 })();

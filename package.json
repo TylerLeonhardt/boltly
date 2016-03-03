@@ -21,6 +21,7 @@
     "angular-aria": "^1.5.0",
     "angular-material": "^1.0.5",
     "angular-pouchdb": "^4.1.0",
+    "angular-socket-io": "^0.7.0",
     "angular-ui-ace": "^0.2.3",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
