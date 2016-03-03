@@ -69,7 +69,10 @@
           if(!change.change.deleted){
             $scope.connections.push(change.change.doc);
           }else {
-            $scope.connections = $scope.connections.filter((connection) => (change.id !== connection._id));
+            let index = $scope.connections.findIndex((connection, index, array) => change.change.id === connection._id);
+            if(index != -1){
+              $scope.connections.splice(index, 1);
+            }
           }
         }
 
