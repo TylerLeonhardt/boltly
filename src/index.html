@@ -115,8 +115,21 @@
         </md-toolbar>
         <md-content flex id="content" layout="column">
             <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column">
-                <div flex>
-                    This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}
+                <div flex layout="column">
+                    <!-- <div>This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}</div> -->
+
+                    <div>
+                      <h2>Send a message...<h2>
+                        <md-input-container class="md-block" flex-gt-sm>
+                          <label>Event name</label>
+                          <input ng-model="connection.currentMsgEvent">
+                        </md-input-container>
+                    </div>
+                    <div ui-ace="{theme:'monokai', useWrapMode : true
+              }"flex ng-model="connection.currentMsgBody">
+                    dis be the message.
+                    </div>
+                    <md-button class="btn1" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
                 </div>
                 <div id="console" ui-ace="{useWrapMode : true,
             theme:'monokai',

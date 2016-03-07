@@ -14,7 +14,9 @@
         url:$scope.newConnection,
         incomingHistory:["test","wow"],
         outgoingHistory:["wow"],
-        trackedEvents:[]
+        trackedEvents:[],
+        currentMsgEvent: "My Event",
+        currentMsgBody: "Hello World!"
       };
       $mdBottomSheet.hide(connectionObj);
     };

@@ -38,6 +38,37 @@
         $scope.hoverOut = (i) => $scope.tabs.hovered[i] = false;
         $scope.toggleHistory = () => $mdSidenav('left').toggle();
 
+        $scope.sendMessage = (evt, msg, i) => {
+          try {
+              msg = JSON.parse(msg);
+          }
+          catch (e) { }
+          console.log("FIRE: " + evt + " " + msg);
+          $scope.sockets[i].emit(evt, msg);
+          $scope.connections[i].outgoingHistory.push({"event":evt, "msg":msg});
+
+          db.get($scope.connections[i]._id).then(function(doc) {
+            console.log(doc)
+            doc.outgoingHistory.push({"event":evt, "msg":msg});
+            return db.put({
+              _id: doc._id,
+              _rev: doc._rev,
+              outgoingHistory: doc.outgoingHistory,
+              url:doc.url,
+              incomingHistory:doc.incomingHistory,
+              outgoingHistory:doc.outgoingHistory,
+              trackedEvents:doc.trackedEvents,
+              currentMsgEvent: doc.currentMsgEvent,
+              currentMsgBody: doc.currentMsgBody
+            });
+          }).then(function(response) {
+            // handle response
+            console.log(response);
+          }).catch(function (err) {
+            console.log(err);
+          });
+        }
+
         let addToConnections = res => db.post(res);
         $scope.showListBottomSheet = () => {
             $mdBottomSheet.show({
@@ -51,23 +82,25 @@
         };
 
         let onChange = (change) => {
+          let index = $scope.connections.findIndex((connection, index, array) => change.change.id === connection._id);
           if(!change.change.deleted){
-            let tempSocket = new socket(change.change.doc.url);
-            tempSocket.connected = false;
-
-            tempSocket.on('connect',function() {
-              $log.info(' [Socket.io] Client has connected to: ' + change.change.doc.url);
-              tempSocket.connected = true;
-            });
-            tempSocket.on('disconnect',function() {
-              $log.info(' [Socket.io] The client has disconnected from: ' + change.change.doc.url);
+            if(index == -1){
+              let tempSocket = new socket(change.change.doc.url);
               tempSocket.connected = false;
-            });
-            $scope.sockets.push(tempSocket);
-            $scope.tabs.hovered.push(false);
-            $scope.connections.push(change.change.doc);
+
+              tempSocket.on('connect',function() {
+                $log.info(' [Socket.io] Client has connected to: ' + change.change.doc.url);
+                tempSocket.connected = true;
+              });
+              tempSocket.on('disconnect',function() {
+                $log.info(' [Socket.io] The client has disconnected from: ' + change.change.doc.url);
+                tempSocket.connected = false;
+              });
+              $scope.sockets.push(tempSocket);
+              $scope.tabs.hovered.push(false);
+              $scope.connections.push(change.change.doc);
+            }
           }else {
-            let index = $scope.connections.findIndex((connection, index, array) => change.change.id === connection._id);
             if(index != -1){
               $scope.connections.splice(index, 1);
               $scope.sockets[index].disconnect();
