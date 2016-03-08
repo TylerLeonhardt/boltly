@@ -14,9 +14,13 @@
         LATER ADD SYNC CODE
         */
 
-        $scope.remove = (item, $event) => {
-            // do some code here
-            db.remove(item);
+        $scope.remove = (index, $event) => {
+            db.get($scope.connections[index]._id)
+              .then((doc) => {
+                db.remove(doc);
+              })
+              .catch(err => $log.error(err));
+
             // Prevent bubbling to item.
             // On recent browsers, only $event.stopPropagation() is needed
             if ($event.stopPropagation) $event.stopPropagation();
@@ -34,39 +38,82 @@
             previous: () => $scope.tabs.selectedIndex = Math.max($scope.tabs.selectedIndex - 1, 0)
         };
 
-        $scope.hoverIn = (i) => $scope.tabs.hovered[i] = true;
-        $scope.hoverOut = (i) => $scope.tabs.hovered[i] = false;
+        $scope.hoverIn = i => $scope.tabs.hovered[i] = true;
+        $scope.hoverOut = i => $scope.tabs.hovered[i] = false;
         $scope.toggleHistory = () => $mdSidenav('left').toggle();
 
+        $scope.addEvent = (evt, i) => {
+          let storeIncomingHistory = (evt,data) => {
+              db.get($scope.connections[i]._id).then(function(doc) {
+              doc.incomingHistory.push({"event":evt,"msg":data});
+              return db.put(doc);
+            }).then(function(response) {
+            }).catch(function (err) {
+              if (err.status === 409) {
+                storeIncomingHistory(evt,data);
+              }else{
+                $log.error(err);
+              }
+            });
+          };
+          $scope.sockets[i].on(evt, data => {
+            $scope.connections[i].incomingHistory.push({"event":evt,"msg":data});
+            storeIncomingHistory(evt, data);
+          });
+
+          let storeTrackedEvents = evt => {
+            db.get($scope.connections[i]._id).then(function(doc) {
+              doc.trackedEvents.push(evt);
+              return db.put(doc);
+            }).then(function(response) {
+            }).catch(function (err) {
+              if (err.status === 409) {
+                storeTrackedEvents(evt);
+              }else {
+                $log.error(err);
+              }
+            });
+          };
+          storeTrackedEvents(evt);
+        }
+        $scope.removeEvent = (evt, i) => {
+          $scope.sockets[i].removeAllListeners(evt);
+          let storeRemoveEvent = () => {
+            db.get($scope.connections[i]._id).then(function(doc) {
+              doc.trackedEvents.splice(doc.trackedEvents.indexOf(evt),1);
+              return db.put(doc);
+            }).then(function(response) {
+            }).catch(function (err) {
+              if(err.status == 409){
+                storeRemoveEvent();
+              }else{
+                $log.error(err);
+              }
+            });
+          };
+          storeRemoveEvent();
+        }
         $scope.sendMessage = (evt, msg, i) => {
           try {
               msg = JSON.parse(msg);
           }
           catch (e) { }
-          console.log("FIRE: " + evt + " " + msg);
           $scope.sockets[i].emit(evt, msg);
           $scope.connections[i].outgoingHistory.push({"event":evt, "msg":msg});
-
-          db.get($scope.connections[i]._id).then(function(doc) {
-            console.log(doc)
-            doc.outgoingHistory.push({"event":evt, "msg":msg});
-            return db.put({
-              _id: doc._id,
-              _rev: doc._rev,
-              outgoingHistory: doc.outgoingHistory,
-              url:doc.url,
-              incomingHistory:doc.incomingHistory,
-              outgoingHistory:doc.outgoingHistory,
-              trackedEvents:doc.trackedEvents,
-              currentMsgEvent: doc.currentMsgEvent,
-              currentMsgBody: doc.currentMsgBody
+          let storeOutgoingHistory = () => {
+            db.get($scope.connections[i]._id).then(function(doc) {
+              doc.outgoingHistory.push({"event":evt, "msg":msg});
+              return db.put(doc);
+            }).then(function(response) {
+            }).catch(function (err) {
+              if(err.status == 409){
+                storeOutgoingHistory()
+              }else{
+                $log.error(err);
+              }
             });
-          }).then(function(response) {
-            // handle response
-            console.log(response);
-          }).catch(function (err) {
-            console.log(err);
-          });
+          };
+          storeOutgoingHistory();
         }
 
         let addToConnections = res => db.post(res);
@@ -96,6 +143,27 @@
                 $log.info(' [Socket.io] The client has disconnected from: ' + change.change.doc.url);
                 tempSocket.connected = false;
               });
+
+              for (let evt of change.change.doc.trackedEvents) {
+                let storeTrackedEvents = (evt, data) => {
+                  db.get(change.change.doc._id).then(function(doc) {
+                    doc.incomingHistory.push({"event":evt,"msg":data});
+                    return db.put(doc);
+                  }).then(function(response) {
+                  }).catch(function (err) {
+                    if(err.status == 409){
+                      storeTrackedEvents(evt, data);
+                    }else{
+                      $log.error(err);
+                    }
+                  });
+                }
+                tempSocket.on(evt, data => {
+                  change.change.doc.incomingHistory.push({"event":evt,"msg":data});
+                  storeTrackedEvents(evt,data);
+                });
+              }
+
               $scope.sockets.push(tempSocket);
               $scope.tabs.hovered.push(false);
               $scope.connections.push(change.change.doc);
@@ -108,6 +176,11 @@
               $scope.tabs.hovered.splice(index, 1);
             }
           }
+        }
+
+        $scope.setMsg = (outgoingHistoryObject) => {
+          $scope.connections[$scope.tabs.selectedIndex].currentMsgEvent = outgoingHistoryObject.event;
+          $scope.connections[$scope.tabs.selectedIndex].currentMsgBody = outgoingHistoryObject.msg;
         }
 
         let options = { include_docs: true, live: true };

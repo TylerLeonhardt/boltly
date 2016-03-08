@@ -4,7 +4,7 @@ angular.module('app', [
     'pouchdb',
     'btford.socket-io',
     'ui.ace'
-]).config(($mdThemingProvider, $mdIconProvider) => {
+]).config(($mdThemingProvider, $mdIconProvider, pouchDBProvider, POUCHDB_METHODS) => {
     $mdThemingProvider.definePalette('darkRich', {
         '50': 'a4acb4',
         '100': '8d98a1',
@@ -55,4 +55,18 @@ angular.module('app', [
         'hue-1': '100',
         'hue-2': 'A100'
     }).dark();
+
+    var upsertMethods = {
+      upsert: 'qify',
+      putIfNotExists: 'qify'
+    };
+    pouchDBProvider.methods = angular.extend({}, POUCHDB_METHODS, upsertMethods);
+
+    //NOTE FOR AUTH LATER
+    // var authMethods = {
+    //   login: 'qify',
+    //   logout: 'qify',
+    //   getUser: 'qify'
+    // };
+    // pouchDBProvider.methods = angular.extend({}, POUCHDB_METHODS, authMethods);
 });

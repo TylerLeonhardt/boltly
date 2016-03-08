@@ -28,6 +28,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-ruby-sass": "^2.0.6",
     "live-server": "^0.9.2",
-    "pouchdb": "^5.2.1"
+    "pouchdb": "^5.2.1",
+    "pouchdb-upsert": "^1.1.3"
   }
 }

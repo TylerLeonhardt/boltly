@@ -51,7 +51,7 @@
             <h3>History</h3>
         </md-toolbar>
         <md-list>
-            <md-list-item ng-repeat="outgoingHistoryObject in connections[tabs.selectedIndex].outgoingHistory">
+            <md-list-item ng-repeat="outgoingHistoryObject in connections[tabs.selectedIndex].outgoingHistory" ng-click="setMsg(outgoingHistoryObject)">
                 <!-- <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"> -->
                 <!-- <md-button> -->
                 <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
@@ -76,7 +76,7 @@
                         <div flex>
                           {{connection.url}}
                         </div>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove(connection, $event)" ng-show="tabs.hovered[$index]">
+                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove($index, $event)" ng-show="tabs.hovered[$index]">
                           <md-icon class="close" md-svg-icon="assets/svg/ic_close_white_24px.svg"></md-icon>
                         </md-button>
                         <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!tabs.hovered[$index] && sockets[$index].connected">
@@ -114,10 +114,21 @@
             </md-menu>
         </md-toolbar>
         <md-content flex id="content" layout="column">
-            <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column">
+            <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column" ng-init="connectionIndex = $index">
                 <div flex layout="column">
                     <!-- <div>This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}</div> -->
-
+                    <div>
+                      Listening for...
+                    </div>
+                    <md-chips
+                      ng-model="connection.trackedEvents"
+                      placeholder="Enter an event"
+                      delete-button-label="Remove Event"
+                      delete-hint="Press delete to remove event"
+                      secondary-placeholder="+Event"
+                      md-on-add="addEvent($chip, connectionIndex)"
+                      md-on-remove="removeEvent($chip, connectionIndex)">
+                    </md-chips>
                     <div>
                       <h2>Send a message...<h2>
                         <md-input-container class="md-block" flex-gt-sm>
@@ -131,24 +142,10 @@
                     </div>
                     <md-button class="btn1" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
                 </div>
-                <div id="console" ui-ace="{useWrapMode : true,
-            theme:'monokai',
-            advanced: {
-            highlightActiveLine: false,
-            highlightGutterLine: false},
-            showGutter:false
-          }" readonly flex>
-                    dis be the console.
+                <div id="console" scroll-bottom="connection.incomingHistory" flex>
+                    <div ng-repeat="history in connection.incomingHistory"> {{history}} </div>
                 </div>
             </ng-view flex>
-            <!-- <div flex ng-show="!connections.length">
-              <md-button ng-click="showListBottomSheet()">
-                  <div layout="row">
-                      <p flex>Add New Connection</p>
-                      <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
-                  </div>
-              </md-button>
-            </div> -->
         </md-content>
     </div>
 
@@ -174,6 +171,7 @@
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
 </body>
 
 </html>

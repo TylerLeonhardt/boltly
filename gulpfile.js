@@ -29,6 +29,10 @@ var path = {
 		src: [ 'src/js/controllers/*.js'],
 		dst: 'dist/js/',
 		name: 'controllers.js'
+	},{
+		src: [ 'src/js/directives/*.js'],
+		dst: 'dist/js/',
+		name: 'directives.js'
 	}, {
 		src: [ 'src/js/services/*.js'],
 		dst: 'dist/js/',

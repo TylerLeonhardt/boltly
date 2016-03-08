@@ -12,8 +12,8 @@
     $scope.createNewConnection = () => {
       let connectionObj = {
         url:$scope.newConnection,
-        incomingHistory:["test","wow"],
-        outgoingHistory:["wow"],
+        incomingHistory:[],
+        outgoingHistory:[],
         trackedEvents:[],
         currentMsgEvent: "My Event",
         currentMsgBody: "Hello World!"
