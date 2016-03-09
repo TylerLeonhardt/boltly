@@ -39,8 +39,11 @@ The progress of this project will be kept on Trello [here](https://trello.com/b/
 
 ## Getting Started
 
-1. clone this repository
+1. clone this repository or download the zip
 2. `cd project-lightning/`
 3. `npm install`
 4. `gulp`
-7. `npm start`
+5. `npm start`
+
+You should be good to go. If you need a simple Socket.io server to test it out, try this:
+https://github.com/tylerl0706/echo-socket.io-server

@@ -46,25 +46,29 @@
     </md-list>
 
   </md-sidenav> -->
-    <md-sidenav ng-show="connections.length" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-click="toggleHistory()" aria-label="Show History" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-sidenav ng-show="connections.length" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" ng-click="toggleHistory()" aria-label="Show History" md-is-locked-open="$mdMedia('gt-sm')" layout="column" style="display: flex; flex-flow: column; height: 100%;">
         <md-toolbar class="md-whiteframe-z1">
             <h3>History</h3>
         </md-toolbar>
-        <md-list>
+        <md-list style="min-height: 0; flex: 1; overflow: auto;">
             <md-list-item ng-repeat="outgoingHistoryObject in connections[tabs.selectedIndex].outgoingHistory" ng-click="setMsg(outgoingHistoryObject)">
                 <!-- <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"> -->
                 <!-- <md-button> -->
                 <!-- <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon> -->
                 <!-- {{it.name}} -->
                 <!-- </md-button> -->
-                {{outgoingHistoryObject}}
+                <div class="md-list-item-text" layout="column">
+                  <h3>{{ outgoingHistoryObject.event }}</h3>
+                  <h4>{{ outgoingHistoryObject.sentAt }}</h4>
+                  <p>{{ outgoingHistoryObject.msg }}</p>
+                </div>
             </md-list-item>
             <md-list-item ng-show="!connections[tabs.selectedIndex].outgoingHistory.length">
               No History
             </md-list-item>
         </md-list>
     </md-sidenav>
-    <div ng-show="connections.length" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+    <div ng-show="connections.length" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" style="display: flex; flex-flow: column; height: 100%;">
         <md-toolbar layout="row" class="md-whiteframe-z1">
             <md-button id="main" class="menu" hide-gt-sm ng-click="toggleHistory()" aria-label="Show History">
                 <md-icon md-svg-icon="history"></md-icon>
@@ -136,14 +140,26 @@
                           <input ng-model="connection.currentMsgEvent">
                         </md-input-container>
                     </div>
-                    <div ui-ace="{theme:'monokai', useWrapMode : true
+                    <div ui-ace="{theme:'pastel_on_dark', useWrapMode : true
               }"flex ng-model="connection.currentMsgBody">
                     dis be the message.
                     </div>
                     <md-button class="btn1" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
                 </div>
-                <div id="console" scroll-bottom="connection.incomingHistory" flex>
-                    <div ng-repeat="history in connection.incomingHistory"> {{history}} </div>
+                <div scroll-bottom="connection.incomingHistory" style="min-height: 0; flex: 1; overflow: auto;">
+                    <div ng-repeat="history in connection.incomingHistory">
+                      <md-card>
+                        <!-- {{history}} -->
+                        <md-card-title>
+                          <md-card-title-text>
+                            <span class="md-headline">{{history.event}}</span>
+                          </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                          <pre style="overflow-x:scroll; padding:10px 0;">{{format(history.msg)}}</pre>
+                        </md-card-content>
+                      </md-card>
+                    </div>
                 </div>
             </ng-view flex>
         </md-content>
