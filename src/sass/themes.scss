@@ -1,0 +1,289 @@
+.light-theme {
+
+  /* General styles*/
+  #content {
+    padding: 0;
+  }
+
+  md-toolbar {
+    background-color: #1C3144 !important;
+  }
+
+  md-list, md-content {
+    background-color: #F5F5F5 !important;
+  }
+
+  h3 {
+    color: #f5f5f5;
+    text-shadow: 1px 1px black;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  h4 {
+    color: #1C3144;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    margin: 0;
+    text-shadow: 1px 1px white;
+  }
+
+  h5 {
+    color: #A0A0A0;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: right;
+    line-height: 14px;
+    margin: 0;
+  }
+
+  h6 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    color: #A0A0A0;
+    margin: 0;
+    text-shadow: 1px 1px white;
+  }
+
+  /* Connections tabs */
+  md-tab-item h3 {
+    line-height: 14px;
+    margin-top: 5px;
+  }
+
+  md-ink-bar {
+    background-color: rgb(172, 135, 223);
+  }
+
+  md-menu .md-icon-button {
+    line-height: 38px !important;
+  }
+
+  .md-button.md-icon-button {
+    padding-top: 0;
+    line-height: 46px;
+  }
+
+  .close {
+    height: 40px;
+  }
+
+  .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50% 50%;
+    margin-top: -8px;
+    margin-left: 6px;
+  }
+
+  .circle.red {
+    background-color: #D63F3F;
+  }
+
+  .circle.green {
+    background-color: #3FD659;
+  }
+
+  /* History Sidebar */
+  md-list-item {
+    border-bottom: 1px solid #DADADA;
+  }
+
+  md-list-item:nth-of-type(even) {
+    background-color: #ECEAEA;
+  }
+
+  md-list-item:last-of-type {
+    border-bottom: none;
+  }
+
+  md-list-item .code {
+    margin-bottom: 0;
+    font-family: monospace;
+    line-height: 20px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .md-list-item-text {
+    padding: 15px 5px 15px 5px;
+    width: 100%;
+  }
+
+  .LHS {
+    width: 100%;
+  }
+
+  /* Events Incoming Log */
+  md-card-title {
+    padding: 15px;
+    font-size: 14px;
+    background-color: #ECEAEA;
+  }
+
+  md-card-title-text h5 {
+    margin-top: -6px;
+    margin-bottom: -6px;
+  }
+
+  md-card-content {
+    padding: 10px;
+  }
+
+  /* Events Outgoing Input */
+  md-content .connectionInput {
+    padding: 20px;
+  }
+
+  .sendMessageArea {
+    height: 80px;
+    margin-top: 40px;
+  }
+
+  .sendMessageArea h6:first-child {
+    margin-bottom: 10px;
+  }
+
+  .sendMessageArea h6:last-child {
+    background-color: #ECEAEA;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    height: 54px;
+  }
+
+  .sendMessageArea md-input-container {
+    padding: 10px;
+    margin-top: 0;
+    color: #24384B;
+  }
+
+  .sendMessageArea md-input-container input {
+    color: #1C3144;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    margin: 0;
+  }
+
+  .sendMessageArea md-input-container input::-webkit-input-placeholder {
+      // color: #1C3144;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 14px;
+      margin: 0;
+  }
+
+  .ace_editor {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    min-height: 200px;
+  }
+
+  .ace_content{
+    color: #1C3144;
+  }
+
+  .ace_gutter {
+    background-color: #1C3144 !important;
+  }
+
+  .ace_scroller {
+    background-color: whitesmoke;
+  }
+
+  .btn1.md-raised, .btn1.md-raised:hover {
+    background-color: #1C3144 !important;
+    color: white;
+    text-shadow: 1px 1px black;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  /* Menu Items */
+  md-menu-item md-icon svg {
+    fill: #1C3144;
+  }
+
+  /* Add new connection */
+  md-bottom-sheet {
+    background-color: #F5F5F5 !important;
+    padding-top: 20px;
+    height: 25px;
+  }
+
+  md-bottom-sheet h4 {
+    text-transform: uppercase;
+  }
+
+  md-bottom-sheet .LHS {
+    width: 150px;
+  }
+
+  md-bottom-sheet .RHS md-input-container {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+  }
+
+  md-bottom-sheet .RHS input {
+    padding: 0;
+    margin-top: -7px;
+  }
+
+  md-bottom-sheet button {
+    margin: -10px 20px 0 25px;
+    height: 20px;
+    background-color: #1C3144 !important;
+    color: white !important;
+    text-shadow: 1px 1px black;
+  }
+
+  md-bottom-sheet button:disabled {
+    background-color: #D2D2D2 !important;
+  }
+
+  md-bottom-sheet button:disabled span {
+    color: #F5F5F5 !important;
+    text-shadow: none;
+  }
+
+  /* Listening for */
+  md-chip {
+    background-color: rgb(172, 135, 223);
+    color: white;
+    text-shadow: 1px 1px #989898;
+  }
+
+  md-chip svg {
+    fill: white;
+  }
+
+  md-chips-wrap .md-chip-input-container {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  /* Welcome Screen */
+  .welcomeScreen {
+    background-color: #F5F5F5;
+    color: #1C3144;
+    text-shadow: 1px 1px white;
+
+    div:first-child {
+      height: 50vh;
+    }
+  }
+}
+
+.dark-theme {
+  md-toolbar {
+    background-color: black !important;
+  }
+}

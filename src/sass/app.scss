@@ -1,7 +1,7 @@
 /* Toolbar area */
 
 .menu {
-    background-color: transparent;
+    // background-color: transparent;
     border: none;
     height: 38px;
     margin-top: 5px;
@@ -10,7 +10,7 @@
 }
 
 .more {
-    background-color: transparent;
+    // background-color: transparent;
     border: none;
     height: 25px;
     margin: 19px 19px 0px 19px;
@@ -26,16 +26,16 @@ md-bottom-sheet {
     background: transparent;
     overflow: hidden;
 
-    &:before {
-        content: '';
-        background: rgba(232, 232, 232, 0.81);
-        position: absolute;
-        top: -20px;
-        bottom: -20px;
-        right: -20px;
-        left: -20px;
-        -webkit-filter: blur(8px) contrast(0.4) brightness(1.4);
-    }
+    // &:before {
+    //     content: '';
+    //     background: rgba(232, 232, 232, 0.81);
+    //     position: absolute;
+    //     top: -20px;
+    //     bottom: -20px;
+    //     right: -20px;
+    //     left: -20px;
+    //     -webkit-filter: blur(8px) contrast(0.4) brightness(1.4);
+    // }
 }
 
 md-input-container label {
@@ -48,7 +48,7 @@ md-toolbar {
     height: 48px;
 }
 .md-tab.md-active div {
-    color: white;
+    // color: red;
 }
 
 /* Sidenav area */
@@ -64,7 +64,7 @@ md-icon.avatar {
 }
 
 md-list .md-button.selected {
-    color: #03a9f4;
+    // color: #03a9f4;
 }
 
 button#main {
@@ -87,7 +87,7 @@ md-list-item {
     padding-right: 40px;
     padding-top: 5px;
     .md-button.contact {
-        background-color: transparent;
+        // background-color: transparent;
         border: none;
         width: 48px;
         height: 48px;
@@ -106,7 +106,7 @@ md-list-item {
             height: 36px;
         }
         &:active > md-icon {
-            background-color: #dadada;
+            // background-color: #dadada;
             border-radius: 75%;
             padding: 4px;
             transition: all 100ms ease-out 30ms;
@@ -133,8 +133,8 @@ md-list-item {
 }
 
 md-menu-content {
-    background-color: #324556;
-    color: white;
+    // background-color: #324556;
+    // color: white;
 }
 
 md-bottom-sheet md-icon {
@@ -152,7 +152,7 @@ span.name {
 }
 
 .ace_content {
-    background-color: rgb(28, 49, 68);
+    // background-color: rgb(28, 49, 68);
 }
 
 .close {
@@ -166,6 +166,14 @@ span.name {
 
 .md-tab {
   padding-right: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-coor: transparent;
 }
 
 @media (max-width: 600px) {

@@ -1,8 +1,13 @@
 <md-bottom-sheet class="md-list md-has-header" ng-cloak>
-  <md-subheader>Add a Connection</md-subheader>
-  <md-input-container>
-    <label>Connection URL</label>
-    <input ng-model="newConnection" ng-change="checkURL()">
-    <md-button class="md-raised" ng-click="createNewConnection()" ng-disabled="!validURL">Button</md-button>
-  </md-input-container>
+  <div layout="row">
+    <div class="LHS">
+      <h4>Add Connection</h4>
+    </div>
+    <div class="RHS">
+      <md-input-container md-no-float>
+        <input ng-model="newConnection" ng-change="checkURL()" placeholder="Connection URL" ng-keyup="$event.keyCode == 13 ? checkURL() && createNewConnection() : null">
+      </md-input-container>
+    </div>
+    <md-button class="md-raised" ng-click="createNewConnection()" ng-disabled="!validURL">Add</md-button>
+  </div>
 </md-bottom-sheet>

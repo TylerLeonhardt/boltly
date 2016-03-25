@@ -26,7 +26,7 @@
     </style>
 </head>
 
-<body ng-app="app" layout="row" ng-controller="ConnectionsController" ng-cloak>
+<body ng-app="app" layout="row" ng-controller="ConnectionsController" ng-cloak class="light-theme">
     <!-- <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
       md-component-id="left"
       ng-click="ul.toggleList()" aria-label="Show User List"
@@ -58,9 +58,15 @@
                 <!-- {{it.name}} -->
                 <!-- </md-button> -->
                 <div class="md-list-item-text" layout="column">
-                  <h3>{{ outgoingHistoryObject.event }}</h3>
-                  <h4>{{ outgoingHistoryObject.sentAt }}</h4>
-                  <p>{{ outgoingHistoryObject.msg }}</p>
+                  <div layout="row">
+                    <div class="LHS">
+                      <h4>{{ outgoingHistoryObject.event }}</h4>
+                    </div>
+                    <div class="RHS">
+                      <h5>{{ outgoingHistoryObject.sentAt }}</h5>
+                    </div>
+                  </div>
+                  <p class="code">{{ outgoingHistoryObject.msg }}</p>
                 </div>
             </md-list-item>
             <md-list-item ng-show="!connections[tabs.selectedIndex].outgoingHistory.length">
@@ -77,17 +83,17 @@
                 <md-tabs md-selected="tabs.selectedIndex" md-autoselect layout="column" flex>
                     <md-tab ng-repeat="connection in connections" id="tab{{$index}}" flex aria-controls="tab{{$index}}-content" class="connection-tabs">
                       <div layout="row" ng-mouseover="hoverIn($index)" ng-mouseleave="hoverOut($index)">
-                        <div flex>
+                        <h3 flex>
                           {{connection.url}}
-                        </div>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="remove($index, $event)" ng-show="tabs.hovered[$index]">
+                        </h3>
+                        <md-button class="md-icon-button" aria-label="Close" ng-click="remove($index, $event)" ng-show="tabs.hovered[$index]" ng-animate="'box'"> <!-- ng-show="tabs.hovered[$index]" -->
                           <md-icon class="close" md-svg-icon="assets/svg/ic_close_white_24px.svg"></md-icon>
                         </md-button>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!tabs.hovered[$index] && sockets[$index].connected">
-                          <md-icon class="close" md-svg-icon="assets/svg/flash_on_white.svg"></md-icon>
+                        <md-button class="md-icon-button" aria-label="Connected" ng-click="" ng-show="!tabs.hovered[$index] && sockets[$index].connected" ng-animate="'box'">
+                          <div class="circle green"></div>
                         </md-button>
-                        <md-button class="md-icon-button md-primary" aria-label="Close" ng-click="" ng-show="!tabs.hovered[$index] && !sockets[$index].connected">
-                          <md-icon class="close" md-svg-icon="assets/svg/ic_flash_off_white_24px.svg"></md-icon>
+                        <md-button class="md-icon-button" aria-label="Disconnected" ng-click="" ng-show="!tabs.hovered[$index] && !sockets[$index].connected" ng-animate="'box'">
+                          <div class="circle red"></div>
                         </md-button>
                       </div>
                     </md-tab>
@@ -119,40 +125,43 @@
         </md-toolbar>
         <md-content flex id="content" layout="column">
             <ng-view flex ng-repeat="connection in connections" ng-show="$index == tabs.selectedIndex" role="tabpanel" id="tab{{$index}}-content" aria-labelledby="tab{{$index}}" md-swipe-left="tabs.next()" md-swipe-right="tabs.previous()" layout="row" layout-xs="column" ng-init="connectionIndex = $index">
-                <div flex layout="column">
+                <div flex="60" layout="column" class="connectionInput">
                     <!-- <div>This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}</div> -->
-                    <div>
-                      Listening for...
-                    </div>
+                    <h6>Listening for</h6>
                     <md-chips
                       ng-model="connection.trackedEvents"
-                      placeholder="Enter an event"
+                      placeholder="Type event name and press enter"
                       delete-button-label="Remove Event"
                       delete-hint="Press delete to remove event"
-                      secondary-placeholder="+Event"
+                      secondary-placeholder="+ event"
                       md-on-add="addEvent($chip, connectionIndex)"
                       md-on-remove="removeEvent($chip, connectionIndex)">
                     </md-chips>
-                    <div>
-                      <h2>Send a message...<h2>
-                        <md-input-container class="md-block" flex-gt-sm>
-                          <label>Event name</label>
-                          <input ng-model="connection.currentMsgEvent">
-                        </md-input-container>
+                    <div class="sendMessageArea" layout="column">
+                      <h6>Send message<h6>
+                      <md-input-container class="md-block" flex-gt-sm md-no-float>
+                        <input ng-model="connection.currentMsgEvent" placeholder="EVENT NAME">
+                      </md-input-container>
                     </div>
-                    <div ui-ace="{theme:'pastel_on_dark', useWrapMode : true
-              }"flex ng-model="connection.currentMsgBody">
-                    dis be the message.
-                    </div>
-                    <md-button class="btn1" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
+                      <div ui-ace="{theme:'pastel_on_dark', useWrapMode : true
+                }"flex ng-model="connection.currentMsgBody">
+                      </div>
+                    <md-button class="btn1 md-raised" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
                 </div>
-                <div scroll-bottom="connection.incomingHistory" style="min-height: 0; flex: 1; overflow: auto;">
+                <div flex="40" ng-scroll-bottom="connection.incomingHistory" style="min-height: 0; overflow: auto;">
                     <div ng-repeat="history in connection.incomingHistory">
                       <md-card>
                         <!-- {{history}} -->
                         <md-card-title>
                           <md-card-title-text>
-                            <span class="md-headline">{{history.event}}</span>
+                            <div layout="row">
+                              <div class="LHS">
+                                <h4 class="md-headline">{{history.event}}</h4>
+                              </div>
+                              <div class="RHS">
+                                <h5 class="ng-binding">{{history.receivedAt}}</h5>
+                              </div>
+                            </div>
                           </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
@@ -165,13 +174,17 @@
         </md-content>
     </div>
 
-    <div flex ng-show="!connections.length">
-      <md-button ng-click="showListBottomSheet()">
-          <div layout="row">
-              <p flex>Add New Connection</p>
-              <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
-          </div>
-      </md-button>
+    <div flex ng-show="!connections.length" class="welcomeScreen">
+      <div layout="row" layout-align="center end">
+        <h1>Project Lightning</h1>
+        <!-- <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon> -->
+      </div>
+
+      <div layout="row" layout-align="center top">
+        <md-button ng-click="showListBottomSheet()">
+          <h4>Add your first connection</h4>
+        </md-button>
+      </div>
     </div>
     <script src="../node_modules/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="../node_modules/angular/angular.js"></script>

@@ -104,16 +104,17 @@
           storeRemoveEvent();
         }
         $scope.sendMessage = (evt, msg, i) => {
+          let send = msg;
           try {
-              msg = JSON.parse(msg);
+              send = JSON.parse(msg);
           }
           catch (e) { }
-          $scope.sockets[i].emit(evt, msg);
+          $scope.sockets[i].emit(evt, send);
           let now = new Date();
-          $scope.connections[i].outgoingHistory.push({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
+          $scope.connections[i].outgoingHistory.unshift({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
           let storeOutgoingHistory = () => {
             db.get($scope.connections[i]._id).then(function(doc) {
-              doc.outgoingHistory.push({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
+              doc.outgoingHistory.unshift({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
               return db.put(doc);
             }).then(function(response) {
             }).catch(function (err) {
@@ -191,8 +192,13 @@
         }
 
         $scope.setMsg = (outgoingHistoryObject) => {
+          let msg = outgoingHistoryObject.msg;
+          if(typeof outgoingHistoryObject.msg == "object"){
+            msg = JSON.stringify(msg, null, 2);
+          }
+
           $scope.connections[$scope.tabs.selectedIndex].currentMsgEvent = outgoingHistoryObject.event;
-          $scope.connections[$scope.tabs.selectedIndex].currentMsgBody = outgoingHistoryObject.msg;
+          $scope.connections[$scope.tabs.selectedIndex].currentMsgBody = msg;
         }
 
         let options = { include_docs: true, live: true };
