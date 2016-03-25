@@ -143,7 +143,10 @@
                         <input ng-model="connection.currentMsgEvent" placeholder="EVENT NAME">
                       </md-input-container>
                     </div>
-                      <div ui-ace="{theme:'pastel_on_dark', useWrapMode : true
+                      <div ui-ace="{
+                        theme:'pastel_on_dark',
+                        mode: 'json',
+                        useWrapMode : true
                 }"flex ng-model="connection.currentMsgBody">
                       </div>
                     <md-button class="btn1 md-raised" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
