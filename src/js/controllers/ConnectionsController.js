@@ -52,9 +52,10 @@
         $scope.toggleHistory = () => $mdSidenav('left').toggle();
 
         $scope.addEvent = (evt, i) => {
+          let now = new Date();
           let storeIncomingHistory = (evt,data) => {
               db.get($scope.connections[i]._id).then(function(doc) {
-              doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":Date.now()});
+              doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
               return db.put(doc);
             }).then(function(response) {
             }).catch(function (err) {
@@ -66,7 +67,7 @@
             });
           };
           $scope.sockets[i].on(evt, data => {
-            $scope.connections[i].incomingHistory.push({"event":evt,"msg":data, "recievedAt":Date.now()});
+            $scope.connections[i].incomingHistory.push({"event":evt,"msg":data, "recievedAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
             storeIncomingHistory(evt, data);
           });
 
@@ -108,10 +109,11 @@
           }
           catch (e) { }
           $scope.sockets[i].emit(evt, msg);
-          $scope.connections[i].outgoingHistory.push({"event":evt, "msg":msg, "sentAt":Date.now()});
+          let now = new Date();
+          $scope.connections[i].outgoingHistory.push({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
           let storeOutgoingHistory = () => {
             db.get($scope.connections[i]._id).then(function(doc) {
-              doc.outgoingHistory.push({"event":evt, "msg":msg, "sentAt":Date.now()});
+              doc.outgoingHistory.push({"event":evt, "msg":msg, "sentAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
               return db.put(doc);
             }).then(function(response) {
             }).catch(function (err) {
@@ -153,10 +155,11 @@
                 tempSocket.connected = false;
               });
 
+              var now = new Date();
               for (let evt of change.change.doc.trackedEvents) {
                 let storeTrackedEvents = (evt, data) => {
                   db.get(change.change.doc._id).then(function(doc) {
-                    doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":Date.now()});
+                    doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
                     return db.put(doc);
                   }).then(function(response) {
                   }).catch(function (err) {
@@ -168,7 +171,7 @@
                   });
                 }
                 tempSocket.on(evt, data => {
-                  change.change.doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":Date.now()});
+                  change.change.doc.incomingHistory.push({"event":evt,"msg":data, "receivedAt":now.toLocaleTimeString() + " " + now.toLocaleDateString()});
                   storeTrackedEvents(evt,data);
                 });
               }
