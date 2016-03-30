@@ -1,19 +1,21 @@
+/* global angular */
+/* eslint no-param-reassign: [2, { "props": false }] */
+/* eslint arrow-body-style: [2, "always"] */
+
 angular.module('app')
-.directive('ngScrollBottom', ['$timeout', function ($timeout) {
+.directive('ngScrollBottom', ['$timeout', ($timeout) => {
   return {
     scope: {
-      ngScrollBottom: "="
+      ngScrollBottom: '=',
     },
-    link: function ($scope, $element) {
-      $scope.$watchCollection('ngScrollBottom', function (newValue) {
+    link: ($scope, $element) => {
+      $scope.$watchCollection('ngScrollBottom', (newValue) => {
         if (newValue) {
-          $timeout(function(){
-
-            // $element.scrollTop($element[0].scrollHeight);
+          $timeout(() => {
             $element[0].scrollTop = $element[0].scrollHeight;
           }, 0);
         }
       });
-    }
-  }
+    },
+  };
 }]);
