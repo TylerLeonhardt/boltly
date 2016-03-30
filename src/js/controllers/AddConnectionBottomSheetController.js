@@ -15,8 +15,8 @@
         incomingHistory:[],
         outgoingHistory:[],
         trackedEvents:[],
-        currentMsgEvent: "My Event",
-        currentMsgBody: "Hello World!"
+        currentMsgEvent: "",
+        currentMsgBody: ""
       };
       $mdBottomSheet.hide(connectionObj);
     };

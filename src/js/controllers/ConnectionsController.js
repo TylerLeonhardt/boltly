@@ -103,6 +103,21 @@
           };
           storeRemoveEvent();
         }
+
+        $scope.changeTheme = () => {
+          var classes = document.querySelector("body").classList;
+
+          if(classes.contains("dark-theme")) {
+            classes.add("light-theme");
+            classes.remove("dark-theme");
+            document.querySelector("#theme_instr").innerHTML = "Switch to dark theme";
+          } else if(classes.contains("light-theme")) {
+            classes.add("dark-theme");
+            classes.remove("light-theme");
+            document.querySelector("#theme_instr").innerHTML = "Switch to light theme";
+          }
+        }
+
         $scope.sendMessage = (evt, msg, i) => {
           let send = msg;
           try {
@@ -119,13 +134,17 @@
             }).then(function(response) {
             }).catch(function (err) {
               if(err.status == 409){
-                storeOutgoingHistory()
+                storeOutgoingHistory();
               }else{
                 $log.error(err);
               }
             });
           };
           storeOutgoingHistory();
+
+          // Reset Send Message UI UI
+          $scope.connections[$scope.tabs.selectedIndex].currentMsgEvent = "";
+          $scope.connections[$scope.tabs.selectedIndex].currentMsgBody = "";
         }
 
         let addToConnections = res => db.post(res);
