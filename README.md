@@ -2,8 +2,7 @@
 
 [![Join the chat at https://gitter.im/tylerl0706/project-lightning](https://badges.gitter.im/tylerl0706/project-lightning.svg)](https://gitter.im/tylerl0706/project-lightning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-a mockup...
-![](mockup/socket.io tester light theme.png)
+![](mockup/light_theme_alpha.png)
 
 Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
 
@@ -31,8 +30,7 @@ Debugging Socket.io server logic is a mess. This is what codename, "Project Ligh
 ### Dark theme
 Oh yeah... also a slick dark theme.
 
-a mockup...
-![](mockup/socket.io tester dark theme.png)
+![](mockup/dark_theme_alpha.png)
 
 ## Roadmap and progress
 The progress of this project will be kept on Trello [here](https://trello.com/b/ixMGRAL1/project-lightning).
