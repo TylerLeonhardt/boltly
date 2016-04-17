@@ -4,7 +4,7 @@
 
 ![](mockup/light_theme_alpha.png)
 
-Codename, "Project Lightning", will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
+Boltly (formally codenamed: "Project Lightning"), will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
 
 ## Why?
 
@@ -16,7 +16,7 @@ Astoundingly, these were the results:
 
 ![](http://i.imgur.com/wrg9y0r.png)
 
-Debugging Socket.io server logic is a mess. This is what codename, "Project Lightning", hopes to fix. It will save time by allowing developers to test their logic with a click of a button.
+Debugging Socket.io server logic is a mess. This is what Boltly (formally codenamed: "Project Lightning") hopes to fix. It will save time by allowing developers to test their logic with a click of a button.
 
 ## MVP Features
 * Beautifully styled with Material Design guidelines
@@ -24,7 +24,7 @@ Debugging Socket.io server logic is a mess. This is what codename, "Project Ligh
 * Send events with complex bodies thanks to Ace Editor.
 * History of sent messages
 * Track any event
-* Watch messages come in via terminal-like environment
+* Watch messages come in in real time
 * Multi-platform support thanks to Electron
 
 ### Dark theme
