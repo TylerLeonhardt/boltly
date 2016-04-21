@@ -14,13 +14,13 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 900, height: 600, minWidth:600});
+  mainWindow = new BrowserWindow({width: 900, height: 600, minWidth:600, icon: __dirname + '/boltly_logo_windows_linux.png'});
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

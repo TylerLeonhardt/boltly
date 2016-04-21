@@ -42,3 +42,5 @@ node_modules
 # Transpiled code
 build
 dist
+
+Boltly-darwin-x64

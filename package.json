@@ -1,13 +1,13 @@
 {
-  "name": "project-lightning",
-  "version": "0.0.1",
-  "description": "coming soon...",
+  "name": "Boltly",
+  "version": "0.0.8",
+  "description": "The complete Socket.io test client. Think of it as \"Postman for Socket.io\"",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
   },
   "keywords": [
-    "Electron"
+    "Socket.io", "Postman", "Test", "Application"
   ],
   "devDependencies": {
     "babel-cli": "^6.5.1",
