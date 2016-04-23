@@ -176,6 +176,13 @@ span.name {
     background-coor: transparent;
 }
 
+md-backdrop {
+    height:100% !important;
+}
+md-dialog {
+    padding: 30px !important;
+}
+
 @media (max-width: 600px) {
     #console {
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.19);

@@ -1,0 +1,16 @@
+<md-dialog aria-label="List dialog">
+    <md-dialog-content>
+        <h1> Hi Alpha Tester! </h1>
+        <md-input-container>
+            <label>Email</label>
+            <input name="email" ng-model="email" required>
+        </md-input-container>
+        <md-input-container>
+            <label>Product Key</label>
+            <input name="productKey" ng-model="productKey" required>
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="validate()" class="md-primary">Activate</md-button>
+    </md-dialog-actions>
+</md-dialog>

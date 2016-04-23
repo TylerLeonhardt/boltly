@@ -177,7 +177,7 @@
         </md-content>
     </div>
 
-    <div flex ng-show="!connections.length" class="welcomeScreen">
+    <div flex ng-show="!connections.length" class="welcomeScreen" role="main">
       <div layout="row" layout-align="center end">
         <h1>Boltly</h1>
         <!-- <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon> -->
@@ -189,6 +189,8 @@
         </md-button>
       </div>
     </div>
+
+
     <script src="../node_modules/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
