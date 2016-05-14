@@ -13,6 +13,7 @@ angular.module('app', [
         .icon('share', './assets/svg/share.svg', 24)
         .icon('history', './assets/svg/history_white.svg', 24)
         .icon('google_plus', './assets/svg/google_plus.svg', 512)
+        .icon('feedback', './assets/svg/ic_feedback_black_24px.svg', 24)
         .icon('hangouts', './assets/svg/hangouts.svg', 512)
         .icon('twitter', './assets/svg/twitter.svg', 512)
         .icon('phone', './assets/svg/phone.svg', 512);

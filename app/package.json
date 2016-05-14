@@ -1,0 +1,23 @@
+{
+  "name": "Boltly",
+  "version": "0.0.9",
+  "description": "The complete Socket.io test client. Think of it as 'Postman for Socket.io'",
+  "productName": "Boltly",
+  "author": "Tyler Leonhardt",
+  "homepage": "https://getboltly.com",
+  "license": "MIT",
+  "private": true,
+  "main": "out/main.js",
+  "dependencies": {
+    "ace-builds": "^1.2.2",
+    "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-material": "^1.0.7",
+    "angular-pouchdb": "^4.2.0",
+    "angular-socket-io": "^0.7.0",
+    "angular-ui-ace": "^0.2.3",
+    "pouchdb": "^5.3.2",
+    "pouchdb-upsert": "^1.1.3"
+  }
+}

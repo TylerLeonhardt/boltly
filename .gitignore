@@ -40,7 +40,7 @@ node_modules
 .sass-cache
 
 # Transpiled code
-build
 dist
+app/out
 
 Boltly-darwin-x64

@@ -1,0 +1,18 @@
+<md-dialog aria-label="List dialog">
+    <md-dialog-content layout="column">
+        <h1>Feedback always welcome!</h1>
+        <h4>How is Boltly so far? (completely anonymous)</h4>
+        <!--<md-input-container>
+            <label>Feedback</label>
+            <textarea name="feedback" ng-model="feedback" required>
+        </md-input-container>-->
+        <md-input-container>
+            <label>Feedback</label>
+            <input name="feedback" ng-model="feedback" required>
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="dismiss()" class="md-primary">Cancel</md-button>
+        <md-button ng-click="send()" class="md-primary">Send feedback</md-button>
+    </md-dialog-actions>
+</md-dialog>

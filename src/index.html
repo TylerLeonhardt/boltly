@@ -106,17 +106,25 @@
                 <md-menu-content width="4">
                     <md-menu-item>
                         <md-button ng-click="showListBottomSheet()">
-                            <div layout="row">
-                                <p flex>Add New Connection</p>
+                            <div flex layout="row">
+                                <p flex>Add new connection</p>
                                 <md-icon md-menu-align-target md-svg-icon="flash_on_white" style="margin: auto 3px auto 0;"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
                         <md-button ng-click="changeTheme()">
-                            <div layout="row">
+                            <div flex layout="row">
                                 <p flex id="theme_instr">Switch to dark theme</p>
                                 <md-icon md-menu-align-target md-svg-icon="palette_white" style="margin: auto 3px auto 0;"></md-icon>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="showFeedbackDialog($event)">
+                            <div flex layout="row">
+                                <p flex>Give feedback</p>
+                                <md-icon md-menu-align-target md-svg-icon="feedback" style="margin: auto 3px auto 0;"></md-icon>
                             </div>
                         </md-button>
                     </md-menu-item>
@@ -129,13 +137,13 @@
                     <!-- <div>This will be where we track and send events index: {{$index}} other index: {{tabs.selectedIndex}}</div> -->
                     <h6>Listening for</h6>
                     <md-chips
-                      ng-model="connection.trackedEvents"
-                      placeholder="Type event name and press enter"
-                      delete-button-label="Remove Event"
-                      delete-hint="Press delete to remove event"
-                      secondary-placeholder="+ event"
-                      md-on-add="addEvent($chip, connectionIndex)"
-                      md-on-remove="removeEvent($chip, connectionIndex)">
+                        ng-model="connection.trackedEvents"
+                        placeholder="Type event name and press enter"
+                        delete-button-label="Remove Event"
+                        delete-hint="Press delete to remove event"
+                        secondary-placeholder="+ event"
+                        md-on-add="addEvent($chip, connectionIndex)"
+                        md-on-remove="removeEvent($chip, connectionIndex)">
                     </md-chips>
                     <div class="sendMessageArea" layout="column">
                       <h6>Send message<h6>
@@ -152,6 +160,9 @@
                     <md-button class="btn1 md-raised" ng-click="sendMessage(connection.currentMsgEvent, connection.currentMsgBody, $index);"> Send </md-button>
                 </div>
                 <div flex="40" ng-scroll-bottom="connection.incomingHistory" style="min-height: 0; overflow: auto;">
+                    <div ng-show="!connection.incomingHistory.length" style="padding: 20px;">
+                        No History
+                    </div>
                     <div ng-repeat="history in connection.incomingHistory">
                       <md-card>
                         <!-- {{history}} -->

@@ -1,14 +1,14 @@
-(function() {
+(function () {
     'use strict';
 
     let mod = angular.module('app');
 
     mod.controller('ConnectionsController', [
-        '$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB', 'socket', '$mdDialog',
+        '$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB', 'socket', '$mdDialog','$http','$mdToast',
         ConnectionsController
     ]);
 
-    function ConnectionsController($scope, $mdSidenav, $mdBottomSheet, $log, pouchDB, socket, $mdDialog) {
+    function ConnectionsController($scope, $mdSidenav, $mdBottomSheet, $log, pouchDB, socket, $mdDialog, $http, $mdToast) {
         let db = pouchDB("local");
         /*
         LATER ADD SYNC CODE
@@ -16,12 +16,12 @@
 
         if( localStorage.getItem('registered') != 'true' ) {
             $mdDialog.show({
-                // parent: angular.element(document.body),
+                escapeToClose: false,
                 templateUrl: 'views/login-dialog.html',
                 controller: 'loginDialogController'
             });
         }
-        
+
 
         $scope.format = str => {
             try {
@@ -161,6 +161,44 @@
                 // .then(db.post)
                 // .then(get)
                 .then(addToConnections)
+                .catch($log.error);
+        };
+
+        $scope.showFeedbackDialog = (ev) => {
+          //   var confirm = $mdDialog.prompt()
+          //   .title('Feedback always welcome!')
+          //   .textContent('How is Boltly so fa? (completely anonymous)')
+          //   .placeholder('Feedback')
+          //   .ariaLabel('Feedback')
+          //   .targetEvent(ev)
+          //   .ok('Send Feedback')
+          //   .cancel('Cancel');
+          // $mdDialog.show(confirm).then(result => {
+          //   console.log(result);
+          //   $http({
+          //     method: 'POST',
+          //     url: `http://localhost:3000/feedback?feedback=${result}`,
+          //   }).success(data => {
+          //     $mdToast.show(
+          //       $mdToast.simple()
+          //         .textContent(data)
+          //         .hideDelay(3000)
+          //       );
+          //     $mdDialog.hide();
+          //   }).error(() => {
+          //     $mdToast.show(
+          //       $mdToast.simple()
+          //         .textContent('Issues. Please try again. :(')
+          //         .hideDelay(3000)
+          //     );
+          //   });
+          // }, function() {
+          //   console.log('you cancelled');
+          // });
+            $mdDialog.show({
+                    templateUrl: 'views/feedback-dialog.html',
+                    controller: 'FeedbackDialogController'
+                })
                 .catch($log.error);
         };
 
