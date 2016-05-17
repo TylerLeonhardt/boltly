@@ -12,8 +12,10 @@
     "pack": "npm run compile && build",
     "dist": "npm run compile && build -d",
     "release": "npm run compile && build",
-    "dist:win64": "./node_modules/.bin/build --platform win32 --arch x64",
-    "dist:win32": "./node_modules/.bin/build --platform win32 --arch ia32"
+    "dist:win64": "npm run compile && ./node_modules/.bin/build --platform win32 --arch x64",
+    "dist:win32": "npm run compile && ./node_modules/.bin/build --platform win32 --arch ia32",
+    "dist:linux32": "npm run compile && ./node_modules/.bin/build --platform linux --arch ia32",
+    "dist:linux64": "npm run compile && ./node_modules/.bin/build --platform linux --arch x64"
   },
   "build": {
     "app-bundle-id": "org.boltly.boltly",

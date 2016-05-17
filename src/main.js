@@ -2,6 +2,10 @@
 /* global __dirname */
 'use strict';
 
+/* eslint-disable */
+if (require('electron-squirrel-startup')) return;
+/* eslint-enable */
+
 const electron = require('electron');
 // Module to control application life.
 const app = electron.app;
@@ -22,7 +26,7 @@ function createWindow() {
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
