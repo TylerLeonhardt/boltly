@@ -5,6 +5,7 @@
     "install-app-deps": "install-app-deps",
     "postinstall": "install-app-deps",
     "start": "npm install && npm run compile && electron ./app",
+    "start-no-install": "npm run compile && electron ./app",
     "clean": "rimraf dist",
     "clean:osx": "rimraf dist/Boltly-darwin-x64",
     "clean:win": "rimraf dist/win",

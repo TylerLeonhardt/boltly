@@ -1,10 +1,14 @@
 {
-    "extends": "airbnb",
+    "extends": "angular",
     "parserOptions": {
         "ecmaVersion": 6,
         "ecmaFeatures": {}
     },
     "plugins": [
       "angular"
-    ]
+    ],
+    "rules": {
+        "no-param-reassign": 0,
+        "angular/controller-as": 0
+    }
 }
