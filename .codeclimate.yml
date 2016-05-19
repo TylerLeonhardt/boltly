@@ -1,0 +1,15 @@
+engines:
+  eslint:
+    enabled: true
+    config:
+        config: .eslintrc.json
+    config:
+      languages:
+        #mass_threshold: 30
+      - javascript
+ratings:
+  paths:
+  - "src/**.js"
+# exclude_paths:
+# - spec/**/*
+# - "**/vendor/**/*"

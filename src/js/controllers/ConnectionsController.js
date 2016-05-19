@@ -62,7 +62,7 @@
     $scope.addEvent = (evt, i) => {
       const now = new Date();
       const storeIncomingHistory = (event, data) => {
-        db.get($scope.connections[i]._id).then(function (doc) {
+        db.get($scope.connections[i]._id).then(doc => {
           doc.incomingHistory.push({ event: event, msg: data, receivedAt: now.toLocaleTimeString() + ' ' + now.toLocaleDateString() });
           return db.put(doc);
         }).then(() => {}).catch(err => {
@@ -79,10 +79,10 @@
       });
 
       const storeTrackedEvents = event => {
-        db.get($scope.connections[i]._id).then(function (doc) {
+        db.get($scope.connections[i]._id).then(doc => {
           doc.trackedEvents.push(event);
           return db.put(doc);
-        }).then(function (response) {}).catch(function (err) {
+        }).then(response => {}).catch(err => {
           if (err.status === 409) {
             storeTrackedEvents(event);
           } else {
@@ -189,7 +189,7 @@
           const now = new Date();
           for (let evt of change.change.doc.trackedEvents) {
             const storeTrackedEvents = (event, data) => {
-              db.get(change.change.doc._id).then(function (doc) {
+              db.get(change.change.doc._id).then(doc => {
                 doc.incomingHistory.push({ event: event, msg: data, receivedAt: now.toLocaleTimeString() + ' ' + now.toLocaleDateString() });
                 return db.put(doc);
               }).then(() => {}).catch(err => {
