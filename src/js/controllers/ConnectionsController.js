@@ -19,8 +19,6 @@
         controller: 'loginDialogController',
       });
     }
-
-
     $scope.format = str => {
       try {
         return angular.toJson(str, 2);
@@ -28,8 +26,11 @@
 
       return str;
     };
-
-
+	
+	/*Disposes the binding data and CSS class ng-binding attached to the corresponding element to boost the production run*/
+	app.config(['$compileProvider', function ($compileProvider) {
+  $compileProvider.debugInfoEnabled(false);
+	}]);
 
     $scope.remove = (index, $event) => {
       db.get($scope.connections[index]._id)
