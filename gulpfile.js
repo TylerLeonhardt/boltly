@@ -76,6 +76,13 @@ gulp.task('js', () => {
         .pipe(babel({
           presets: ['es2015'],
         }))
+		.pipe(concat('js.min.js', {newLine: ';'}))
+		.pipe(ngAnnotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+			// Annotate before uglify so the code get's min'd properly.
+            add: true
+        }))
         .pipe(uglify({ mangle: false }))
         .pipe(gulp.dest(sec.dst));
     }
