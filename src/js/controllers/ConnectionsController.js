@@ -1,10 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('app').controller('ConnectionsController', [
-    '$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB', 'socket', '$mdDialog', '$mdToast',
-    ConnectionsController
-  ]);
+  angular
+  .module('app')
+  .controller('ConnectionsController', ConnectionsController);
+
+	ConnectionsController.$inject = ['$scope', '$mdSidenav', '$mdBottomSheet', '$log', 'pouchDB', 'socket', '$mdDialog', '$mdToast'];
 
   function ConnectionsController ($scope, $mdSidenav, $mdBottomSheet, $log, pouchDB, socket, $mdDialog) {
     const db = pouchDB('local');
