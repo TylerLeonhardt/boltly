@@ -33,6 +33,13 @@ Oh yeah... There's also a slick dark theme.
 ## Roadmap and progress
 The progress of this project will be kept on Trello [here](https://trello.com/b/ixMGRAL1/project-lightning).
 
+## Prereq
+This project has one prereq: Sass.
+
+To install sass, go [here](http://sass-lang.com/install).
+
+For more information on Sass, [see their homepage](http://sass-lang.com/).
+
 ## Getting Started
 
 1. clone this repository or download the zip
