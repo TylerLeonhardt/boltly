@@ -1,4 +1,4 @@
-# It's coming...
+# Boltly
 
 [![Join the chat at https://gitter.im/tylerl0706/project-lightning](https://badges.gitter.im/tylerl0706/project-lightning.svg)](https://gitter.im/tylerl0706/project-lightning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
