@@ -12,13 +12,13 @@
     LATER ADD SYNC CODE
     */
 
-    if (localStorage.getItem('registered') !== 'true' || !localStorage.getItem('registered')) {
-      $mdDialog.show({
-        escapeToClose: false,
-        templateUrl: 'views/login-dialog.html',
-        controller: 'loginDialogController',
-      });
-    }
+    // if (localStorage.getItem('registered') !== 'true' || !localStorage.getItem('registered')) {
+    //   $mdDialog.show({
+    //     escapeToClose: false,
+    //     templateUrl: 'views/login-dialog.html',
+    //     controller: 'loginDialogController',
+    //   });
+    // }
 
 
     $scope.format = str => {
