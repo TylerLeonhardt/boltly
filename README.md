@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/tylerl0706/project-lightning](https://badges.gitter.im/tylerl0706/project-lightning.svg)](https://gitter.im/tylerl0706/project-lightning?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-![](mockup/light_theme_alpha.png)
+![](https://boltly.azurewebsites.net/img/light_theme_alpha.png)
 
 Boltly (formally codenamed: "Project Lightning"), will be a complete Socket.io test client allowing you to send and receive messages from your server in order to debug your applications. Think of it as "Postman for Socket.io"
 
@@ -28,9 +28,7 @@ Debugging Socket.io server logic is a mess. This is what Boltly (formally codena
 * Multi-platform support thanks to Electron
 
 ### Dark theme
-Oh yeah... also a slick dark theme.
-
-![](mockup/dark_theme_alpha.png)
+Oh yeah... There's also a slick dark theme.
 
 ## Roadmap and progress
 The progress of this project will be kept on Trello [here](https://trello.com/b/ixMGRAL1/project-lightning).
